@@ -15,8 +15,8 @@ const ImageAnalysis = mongoose.model('Image', imageSchema);
 const analyzeImage = async (req, res) => {
   try {
     const { imageUrl, textInput, useAI } = req.body;
-    if (!imageUrl) {
-      throw new Error('Invalid Image Url');
+    if (!imageUrl || !textInput) {
+      throw new Error('Invalid Image Url or Text Input');
     }
     if (useAI) {
       res.json({
@@ -51,7 +51,9 @@ const analyzeImage = async (req, res) => {
 
 async function getImageAnalysis(req, res) {
   try {
-    const allImageAnalyses = await ImageAnalysis.find();
+    const allImageAnalyses = await ImageAnalysis.find()
+      .sort({ createdAt: -1 })
+      .exec();
 
     res.json({
       message: 'Image analyses retrieved successfully',

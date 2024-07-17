@@ -1,6 +1,6 @@
 ## Installation
 
-To run Sendo locally,
+To run app locally,
 
 - clone the repository
 

@@ -2,6 +2,7 @@ import { Router } from 'express';
 const router = Router();
 import { createWorker } from 'tesseract.js';
 import mongoose from 'mongoose';
+import { createServiceByGemini } from './genAI.js';
 
 const imageSchema = new mongoose.Schema({
   imagePath: String,
@@ -19,9 +20,21 @@ const analyzeImage = async (req, res) => {
       throw new Error('Invalid Image Url or Text Input');
     }
     if (useAI) {
+      const result = await createServiceByGemini(imageUrl);
+
+      const imgData = await ImageAnalysis.create({
+        imagePath: imageUrl,
+        extractedText: result,
+        userInputText: textInput,
+      });
+      console.log(imgData);
       res.json({
-        message: 'Image analysis using AI',
-        data: null,
+        message: 'Image analysis using OCR',
+        data: {
+          imagePath: imgData.imagePath,
+          extractedText: imgData.extractedText,
+          userInputText: imgData.userInputText,
+        },
       });
     } else {
       const worker = await createWorker('eng');

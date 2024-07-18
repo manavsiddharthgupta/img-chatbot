@@ -69,8 +69,18 @@ npm run start
 ## Guide
 
 - Afer running the server and the client, you can upload an image in the client and add the text to get the response.
-- Download the image from the link provided and check the response.
-- ![Image 1](https://imgur.com/1.jpg)
+- Download the image from the below and check the response.
+
+
+<img width="523" alt="ggg" src="https://github.com/user-attachments/assets/16e70c27-675d-46d1-a232-14cf72161dd9">
+
+
+- here is the sample response
+
+
+<img width="509" alt="image" src="https://github.com/user-attachments/assets/595731b1-2018-4d47-809d-06e37c26f075">
+
+
 
 ## Learn More
 
